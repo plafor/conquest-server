@@ -1,6 +1,6 @@
-# conquest
+# conquest server
 
-> A Vue.js project
+> Server for the game conquest
 
 ## Build Setup
 
