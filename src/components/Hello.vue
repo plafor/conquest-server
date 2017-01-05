@@ -6,6 +6,7 @@
       <li><a href="https://github.com/CodeOfCinders/conquest-server" target="_blank">Github</a></li>
       <li><a href="https://www.gitbook.com/book/aytsukii/conquest-server/welcome" target="_blank">Documentation</a></li>
     </ul>
+    <button>
   </div>
 </template>
 
@@ -14,7 +15,7 @@ export default {
   name: 'hello',
   data () {
     return {
-      msg: 'Bienvenu sur l\'interface admin du jeu conquest'
+      msg: 'Bienvenue sur l\'interface admin du jeu conquest'
     }
   }
 }
