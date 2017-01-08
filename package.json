@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/CodeOfCinders/conquest-server.git"
   },
-  "author": "charlesdelorme <charlesdelormefr@gmail.com",
+  "author": "charlesdelorme <charlesdelormefr@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/CodeOfCinders/conquest-server/issues"
