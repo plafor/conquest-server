@@ -8,7 +8,7 @@ app.use(express.static(__dirname + '/bower_components'));
 app.get('/', function(req, res,next) {
     res.sendFile(__dirname + '/index.html');
 });
-app.listen(80);
+server.listen(80);
 console.log('Server start with port 80!');
 
 
