@@ -6,12 +6,10 @@ const teamHandler = require('./team');
 
 app.use(express.static(__dirname + '/bower_components'));
 app.get('/', function(req, res,next) {
-  //  res.sendFile(__dirname + '/index.html');
-    res.send('Hello World!');
+    res.sendFile(__dirname + '/index.html');
 });
-server.listen(80, function () {
-  console.log('Server start with port 80!');
-});
+app.listen(80);
+console.log('Server start with port 80!');
 
 
 teamHandler.createTeam("Red", 123456);
