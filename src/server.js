@@ -6,7 +6,8 @@ const teamHandler = require('./team');
 
 app.use(express.static(__dirname + '/bower_components'));
 app.get('/', function(req, res,next) {
-    res.sendFile(__dirname + '/index.html');
+  //  res.sendFile(__dirname + '/index.html');
+    res.send('Hello World!');
 });
 app.listen(80, function () {
   console.log('Server start with port 80!');
