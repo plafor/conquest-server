@@ -8,8 +8,10 @@ app.use(express.static(__dirname + '/bower_components'));
 app.get('/', function(req, res,next) {
     res.sendFile(__dirname + '/index.html');
 });
-server.listen(3000);
-console.log('Server start with port 3000!');
+const port = process.env.PORT || 8080;
+server.listen(port, function () {
+ console.log('Express server listening on %d, in %s mode', port, app.get('env'));
+});
 
 
 teamHandler.createTeam("Red", 123456);
