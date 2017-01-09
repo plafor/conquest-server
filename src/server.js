@@ -8,8 +8,8 @@ app.use(express.static(__dirname + '/bower_components'));
 app.get('/', function(req, res,next) {
     res.sendFile(__dirname + '/index.html');
 });
-server.listen(80);
-console.log('Server start with port 80!');
+server.listen(3000);
+console.log('Server start with port 3000!');
 
 
 teamHandler.createTeam("Red", 123456);
