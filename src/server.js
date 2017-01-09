@@ -9,7 +9,7 @@ app.get('/', function(req, res,next) {
   //  res.sendFile(__dirname + '/index.html');
     res.send('Hello World!');
 });
-app.listen(80, function () {
+server.listen(80, function () {
   console.log('Server start with port 80!');
 });
 
