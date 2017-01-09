@@ -1,4 +1,5 @@
-const app = require('express')();
+const express = require('express');
+const app = express();
 const server = require('http').createServer(app);
 const socket = require('socket.io')(server);
 const teamHandler = require('./team');
@@ -7,6 +8,10 @@ app.use(express.static(__dirname + '/bower_components'));
 app.get('/', function(req, res,next) {
     res.sendFile(__dirname + '/index.html');
 });
+app.listen(80, function () {
+  console.log('Server start with port 80!');
+});
+
 
 teamHandler.createTeam("Red", 123456);
 teamHandler.addPlayer("Red",{
@@ -60,7 +65,3 @@ socket.on('answserQuestion', function (message) {
 socket.on('changePosition', function (message) {
   console.log("changePosition", message);
 });
-
-
-console.log("Server start");
-server.listen(8080);
