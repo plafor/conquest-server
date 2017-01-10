@@ -8,6 +8,7 @@ const fileSync = require('lowdb/lib/file-sync');
 const db = low('db.json', {
     storage: fileSync
 })
+const _ = require('lodash');
 db.defaults({ teams: [] }).value();
 
 function createTeam(name, color) {
@@ -21,27 +22,27 @@ function createTeam(name, color) {
 exports.createTeam = createTeam;
 
 function addPlayer(teamName, player) {
-    if(db.get('teams').find({ name: "Red" }).value().players.size > db.get('teams').find({ name: "Green" }).value().players.size) {
-        db.get('teams').find({ name: "Green" }).value().players.push({
+    if(db.get('teams').find({ name: "Red" }).value().players.length > db.get('teams').find({ name: "Green" }).value().players.length) {
+        db.get('teams').find({ name: "Green" }).assign(db.get('teams').find({ name: "Green" }).value().players.push({
             nickname: player,
             score : 0,
             lat : 0,
             long : 0
-        });
-    } else if(db.get('teams').find({ name: "Red" }).value().players.size < db.get('teams').find({ name: "Green" }).value().players.size) {
-        db.get('teams').find({ name: "Red" }).value().players.push({
+        })).value();
+    } else if(db.get('teams').find({ name: "Red" }).value().players.length < db.get('teams').find({ name: "Green" }).value().players.length) {
+        db.get('teams').find({ name: "Green" }).assign(db.get('teams').find({ name: "Red" }).value().players.push({
             nickname: player,
             score : 0,
             lat : 0,
             long : 0
-        });
+        })).value();
     } else {
-        db.get('teams').find({ name: teamName }).value().players.push({
+        db.get('teams').find({ name: "Green" }).assign(db.get('teams').find({ name: teamName }).value().players.push({
             nickname: player,
             score : 0,
             lat : 0,
             long : 0
-        })
+        })).value();
     }
 }
 exports.addPlayer = addPlayer;
@@ -49,22 +50,24 @@ exports.addPlayer = addPlayer;
 function changePlayerScore(teamName, playerNickname, score) {
     const team =  db.get('teams').find({ name: teamName}).value();
     team.score += score;
-    team.players.getPlayerInTeam(team, playerNickname);
+    console.log(playerFinder(playerNickname));//.score += score;
     db.get('teams').find({ name: teamName}).assign(team).value();
 }
 exports.changePlayerScore = changePlayerScore;
 
 function changePlayerPosition(teamName, playerNickname, lat, long) {
-    const player =  getPlayerInTeam(db.get('teams').find({ name: teamName}).value(), playerNickname);
+    const player =  playerFinder(playerNickname);
     player.lat = lat;
     player.long= long;
     db.get('teams').find({ name: teamName}).assign(team).value();
 }
 exports.changePlayerPosition = changePlayerPosition;
 
-function getPlayerInTeam(team, playerNickname) {
-    function playerFinder(element) {
-        return element.nickname == playerNickname;
-    }
-    return team.players.find(playerFinder);
+function playerFinder(playerNickname) {
+    _.each(db.get("teams").value(), function (value, key) {
+        _.each(value, function (value, key) {
+            if(value.nickname == playerNickname) {return value}
+        })
+    });
+    //_.each(db.get("teams").value(), (players, key) => _.each(players, (player, key) => {if(player.nickname == playerNickname) {return player}}));
 }

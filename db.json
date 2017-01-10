@@ -1,0 +1,33 @@
+{
+  "teams": [
+    {
+      "name": "Red",
+      "color": -65536,
+      "players": [
+        {
+          "nickname": "Tristan",
+          "score": 0,
+          "lat": 0,
+          "long": 0
+        }
+      ],
+      "score": 5,
+      "numberQuestionTried": 0
+    },
+    {
+      "name": "Green",
+      "color": -65536,
+      "players": [
+        {
+          "nickname": "Charles",
+          "score": 0,
+          "lat": 0,
+          "long": 0
+        }
+      ],
+      "score": 0,
+      "numberQuestionTried": 0
+    }
+  ],
+  "spots": []
+}

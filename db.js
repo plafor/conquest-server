@@ -17,7 +17,10 @@ function newGame() {
     //console.log(db.get("teams").remove(db.get('teams').find({ name: "Red" }).value()).value());
     teamHandler.createTeam("Red",  -65536,0);
     teamHandler.createTeam("Green",  -65536,1);
-
-    teamHandler.addPlayer()
+    teamHandler.addPlayer("Red", "Tristan");
+    teamHandler.changePlayerScore("Red", "Tristan", 5);
+    //teamHandler.changePlayerScore("Red", "Tristan", 5);
+    teamHandler.addPlayer("Red", "Charles");
+    //teamHandler.changePlayerScore("Red", "Tristan", 5);
 }
 exports.newGame = newGame;
