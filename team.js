@@ -10,8 +10,6 @@ const db = low('db.json', {
 })
 db.defaults({ teams: [] }).value();
 
-let teamList = [];
-
 function createTeam(name, color) {
     db.get('teams').find({ name: name }).assign({
         "name" : name,
@@ -49,44 +47,24 @@ function addPlayer(teamName, player) {
 exports.addPlayer = addPlayer;
 
 function changePlayerScore(teamName, playerNickname, score) {
-    const team = getTeam(teamName);
-    team.score = team.score + score;
-    getPlayerInTeam(team, playerNickname).score = score;
-    updateJson();
+    const team =  db.get('teams').find({ name: teamName}).value();
+    team.score += score;
+    team.players.getPlayerInTeam(team, playerNickname);
+    db.get('teams').find({ name: teamName}).assign(team).value();
 }
 exports.changePlayerScore = changePlayerScore;
 
 function changePlayerPosition(teamName, playerNickname, lat, long) {
-    const player =  getPlayer(teamName, playerNickname);
+    const player =  getPlayerInTeam(db.get('teams').find({ name: teamName}).value(), playerNickname);
     player.lat = lat;
     player.long= long;
-    updateJson();
+    db.get('teams').find({ name: teamName}).assign(team).value();
 }
 exports.changePlayerPosition = changePlayerPosition;
-
-function getTeam(teamName) {
-    function teamFinder(element) {
-        return element.name == teamName;
-    }
-    return teamList.find(teamFinder);
-}
-
-function getPlayer(teamName, playerNickname) {
-    function playerFinder(element) {
-        return element.nickname == playerNickname;
-    }
-    return getTeam(teamName).players.find(playerFinder);
-}
 
 function getPlayerInTeam(team, playerNickname) {
     function playerFinder(element) {
         return element.nickname == playerNickname;
     }
     return team.players.find(playerFinder);
-}
-
-function updateJson() {
-    jsonfile.writeFile("./src/res/data/teams.json", teamList, {spaces: 2}, function(err) {
-        console.error("Error with JSON Update : "+err);
-    })
 }
