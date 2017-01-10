@@ -2,6 +2,23 @@ const app = require('express')();
 const server = require('http').createServer(app);
 const socket = require('socket.io')(server);
 
+//Logger
+const winston = require('winston');
+const logger = new (winston.Logger)({
+    transports: [
+        new (winston.transports.File)({
+            name: 'info-file',
+            filename: 'filelog-info.log',
+            level: 'info'
+        }),
+        new (winston.transports.File)({
+            name: 'error-file',
+            filename: 'filelog-error.log',
+            level: 'error'
+        })
+    ]
+});
+
 const teamHandler = require('./team');
 const dbUtil = require('./db');
 //DataBase
@@ -17,16 +34,19 @@ app.get('/', function (req, res, next) {
 });
 // Set socket.io listeners.
 socket.on('connection', (socket) => {
-    console.log('a user connected');
+    winston.info('a user connected');
     socket.on('newPlayer', (message) => {
-        const obj = JSON.parse(message);
-        teamHandler.addPlayer(obj.nickname, obj.preferedTeam);
+        const player = JSON.parse(message);
+        winston.info('Creating user with username: '+player.username+' and team preference to '+player.teamName);
+        teamHandler.addPlayer(player.teamName, player.username);
     });
-    socket.on('message', (message) => {
-        console.log(message);
+    socket.on('changePosition', (message) => {
+        const player = JSON.parse(message);
+        winston.info('the player '+player.username+'changer this position to lat:'+player.lat+' and long: '+player.long);
+        teamHandler.changePlayerPosition(player.username, player.lat, player.long);
     });
     socket.on('disconnect', () => {
-        console.log('user disconnected');
+        winston.info('a user disconnected');
     });
 });
 /*
@@ -57,14 +77,14 @@ server.listen(port, () => console.log('Express server listening on %d, in %s mod
 
 /*teamHandler.createTeam("Red", 123456);
  teamHandler.addPlayer("Red",{
- "nickname" : "George",
+ "username" : "George",
  "team" : "Red",
  "score" : 0,
  "lat" : 0,
  "long" : 0
  });
  teamHandler.addPlayer("Red",{
- "nickname" : "Tizaki",
+ "username" : "Tizaki",
  "team" : "Red",
  "score" : 0,
  "lat" : 0,
@@ -73,21 +93,21 @@ server.listen(port, () => console.log('Express server listening on %d, in %s mod
  teamHandler.changePlayerScore("Red","Tizaki",1);
  teamHandler.createTeam("Green", 456198);
  teamHandler.addPlayer("Green",{
- "nickname" : "Nvidiot",
+ "username" : "Nvidiot",
  "team" : "Green",
  "score" : 0,
  "lat" : 0,
  "long" : 0
  });
  teamHandler.addPlayer("Green",{
- "nickname" : "Shittel",
+ "username" : "Shittel",
  "team" : "Green",
  "score" : 0,
  "lat" : 0,
  "long" : 0
  });
  teamHandler.addPlayer("Green",{
- "nickname" : "GreenPeace",
+ "username" : "GreenPeace",
  "team" : "Green",
  "score" : 0,
  "lat" : 0,

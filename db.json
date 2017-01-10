@@ -1,25 +1,28 @@
 {
   "teams": [
     {
+      "name": "Neutral"
+    },
+    {
       "name": "Red",
       "color": -65536,
       "players": [
         {
-          "nickname": "Tristan",
+          "username": "test",
           "score": 0,
           "lat": 0,
           "long": 0
         }
       ],
-      "score": 5,
+      "score": 0,
       "numberQuestionTried": 0
     },
     {
       "name": "Green",
-      "color": -65536,
+      "color": 24611,
       "players": [
         {
-          "nickname": "Charles",
+          "username": "testt",
           "score": 0,
           "lat": 0,
           "long": 0
@@ -29,5 +32,24 @@
       "numberQuestionTried": 0
     }
   ],
-  "spots": []
+  "spots": [
+    {
+      "title": "Département Informatique",
+      "lat": 48.086012,
+      "long": -0.759521,
+      "status": "Neutral"
+    },
+    {
+      "title": "Parking",
+      "lat": 48.085445810389906,
+      "long": -0.7593280076980591,
+      "status": "Neutral"
+    },
+    {
+      "title": "Dormerie",
+      "lat": 48.085093,
+      "long": -0.75878,
+      "status": "Neutral"
+    }
+  ]
 }
