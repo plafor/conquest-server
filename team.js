@@ -2,24 +2,49 @@
  * Created by charles on 07/01/2017.
  */
 const jsonfile = require('jsonfile');
+//DataBase
+const low = require('lowdb');
+const fileSync = require('lowdb/lib/file-sync');
+const db = low('db.json', {
+    storage: fileSync
+})
+db.defaults({ teams: [] }).value();
 
 let teamList = [];
 
 function createTeam(name, color) {
-   teamList.push( {
-       "name" : name,
-       "color" : color,
-       "players" : [],
-       "score" : 0,
-       "numberQuestionTried" : 0
-   });
-   updateJson();
+    db.get('teams').find({ name: name }).assign({
+        "name" : name,
+        "color" : color,
+        "players" : [],
+        "score" : 0,
+        "numberQuestionTried" : 0}).value();
 }
 exports.createTeam = createTeam;
 
 function addPlayer(teamName, player) {
-    getTeam(teamName).players.push(player);
-    updateJson();
+    if(db.get('teams').find({ name: "Red" }).value().players.size > db.get('teams').find({ name: "Green" }).value().players.size) {
+        db.get('teams').find({ name: "Green" }).value().players.push({
+            nickname: player,
+            score : 0,
+            lat : 0,
+            long : 0
+        });
+    } else if(db.get('teams').find({ name: "Red" }).value().players.size < db.get('teams').find({ name: "Green" }).value().players.size) {
+        db.get('teams').find({ name: "Red" }).value().players.push({
+            nickname: player,
+            score : 0,
+            lat : 0,
+            long : 0
+        });
+    } else {
+        db.get('teams').find({ name: teamName }).value().players.push({
+            nickname: player,
+            score : 0,
+            lat : 0,
+            long : 0
+        })
+    }
 }
 exports.addPlayer = addPlayer;
 

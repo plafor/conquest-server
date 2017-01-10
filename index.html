@@ -1,12 +1,25 @@
 <!doctype html>
-<html lang="en">
-
+<html>
 <head>
-
+    <title>Socket.IO chat</title>
 </head>
-
 <body>
-    <h1>Hello</h1>
-</body>
+<h1>Communication avec socket.io !</h1>
 
+<p><input type="button" value="Embêter le serveur" id="poke"/></p>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script>
+    const socket = io.connect('http://localhost:80');
+    socket.on('information', function (message) {
+        alert('Le serveur a un message pour vous : ' + message);
+        socket.emit('message', 'Salut serveur, ça va ?');
+    })
+    $('#poke').click(function () {
+        socket.emit('message', 'Salut serveur, ça va ?');
+        socket.emit('newPlayer', JSON.stringify({"nickname":"Bebert","Team":"Red"}));
+    })
+</script>
+</body>
 </html>
