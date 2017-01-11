@@ -2,11 +2,13 @@
  * Created by charles on 09/01/2017.
  */
 
+/**
+ * External Module dependencies.
+ */
+
 const app = require('express')();
 const server = require('http').createServer(app);
 const socket = require('socket.io')(server);
-
-//Logger
 const winston = require('winston');
 const logger = new (winston.Logger)({
     transports: [
@@ -22,24 +24,39 @@ const logger = new (winston.Logger)({
         })
     ]
 });
-
-const teamHandler = require('./team');
-const spots = require('./spots');
-const question = require('./question');
-
 const dbUtil = require('./db');
-//DataBase
+// DataBase
 const low = require('lowdb');
 const fileSync = require('lowdb/lib/file-sync');
 const db = low('db.json', {
     storage: fileSync
 })
+/**
+ * Internal Module dependencies.
+ */
+
+const teamHandler = require('./team');
+const spots = require('./spots');
+const question = require('./question');
+
+/**
+ * GameCreating
+ */
+
 dbUtil.newGame();
+
+/**
+ * Express Route configuration
+ */
 
 app.get('/', function (req, res, next) {
     res.sendFile(__dirname + '/web/index.html');
 });
-// Set socket.io listeners.
+
+/**
+ * Socket.io configuration
+ */
+
 socket.on('connection', (socket) => {
     winston.info('a user connected');
     socket.on('newPlayer', (message) => {
@@ -71,5 +88,8 @@ socket.on('connection', (socket) => {
     });
 });
 
+/**
+ * Start listen with the server
+ */
 const port = process.env.PORT || 80;
 server.listen(port, () => console.log('Express server listening on %d, in %s mode', port, app.get('env')));

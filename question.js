@@ -2,6 +2,9 @@
  * Created by charles on 10/01/2017.
  */
 
+/**
+ * External Module dependencies.
+ */
 const jsonfile = require('jsonfile');
 //DataBase
 const low = require('lowdb');
@@ -10,7 +13,6 @@ const db = low('db.json', {
     storage: fileSync
 })
 const _ = require('lodash');
-db.defaults({ questions: [] }).value();
 
 function getQuestion(title) {
     return db.get('question').find({ title: title }).value();

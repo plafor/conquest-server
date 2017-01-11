@@ -1,6 +1,10 @@
 /**
  * Created by charles on 07/01/2017.
  */
+
+/**
+ * External Module dependencies.
+ */
 const jsonfile = require('jsonfile');
 //DataBase
 const low = require('lowdb');
@@ -10,7 +14,7 @@ const db = low('db.json', {
 })
 const _ = require('lodash');
 const winston = require('winston');
-db.defaults({ teams: [] }).value();
+
 
 function createTeam(name, color) {
     db.get('teams').find({ name: name }).assign({

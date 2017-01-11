@@ -1,15 +1,21 @@
 /**
  * Created by aytsukii on 10/01/2017.
  */
-//Team
-const teamHandler = require('./team');
-const spots = require('./spots');
+/**
+ * External Module dependencies.
+ */
 //DataBase
 const low = require('lowdb');
 const fileSync = require('lowdb/lib/file-sync');
 const db = low('db.json', {
     storage: fileSync
 })
+/**
+ * Internal Module dependencies.
+ */
+const teamHandler = require('./team');
+const spots = require('./spots');
+
 
 function newGame() {
     db.defaults({ teams: [] }).value();
