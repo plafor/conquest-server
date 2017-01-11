@@ -1,27 +1,74 @@
 {
   "teams": [
     {
-      "name": "Neutral"
+      "name": "Neutral",
+      "color": -65536,
+      "players": [],
+      "score": 0,
+      "numberQuestionTried": 0
     },
     {
       "name": "Red",
       "color": -65536,
       "players": [
         {
-          "username": "test",
-          "numberQuestionTried": 3,
-          "score": 2,
-          "lat": 42,
-          "long": 42
+          "username": "testtt",
+          "numberQuestionTried": 0,
+          "score": 0,
+          "lat": 0,
+          "long": 0
+        },
+        {
+          "username": "testttrzreezrzeze",
+          "numberQuestionTried": 0,
+          "score": 0,
+          "lat": 0,
+          "long": 0
+        },
+        {
+          "username": "rtyrtyrty",
+          "numberQuestionTried": 0,
+          "score": 0,
+          "lat": 0,
+          "long": 0
         }
       ],
-      "score": 2,
-      "numberQuestionTried": 3
+      "score": 0,
+      "numberQuestionTried": 0
     },
     {
       "name": "Green",
       "color": 24611,
-      "players": [],
+      "players": [
+        {
+          "username": "test",
+          "numberQuestionTried": 0,
+          "score": 0,
+          "lat": 0,
+          "long": 0
+        },
+        {
+          "username": "aezaezaezeaz",
+          "numberQuestionTried": 0,
+          "score": 0,
+          "lat": 0,
+          "long": 0
+        },
+        {
+          "username": "tezerezr",
+          "numberQuestionTried": 0,
+          "score": 0,
+          "lat": 0,
+          "long": 0
+        },
+        {
+          "username": "ryetfdgfdgfdg",
+          "numberQuestionTried": 0,
+          "score": 0,
+          "lat": 0,
+          "long": 0
+        }
+      ],
       "score": 0,
       "numberQuestionTried": 0
     }

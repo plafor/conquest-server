@@ -28,7 +28,6 @@ function spotChangeStatus(title, status) {
 exports.spotChangeStatus = spotChangeStatus;
 
 function getSpotList() {
-    console.log(db.get('spots').value());
     return db.get('spots').value();
 }
 exports.getSpotList = getSpotList;

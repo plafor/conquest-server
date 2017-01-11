@@ -29,7 +29,7 @@ exports.createTeam = createTeam;
 function addPlayer(teamName, player) {
     if(playerFinder(player)!=null) {
         winston.error("A Player have tried to choose an username that is already in database!");
-        return;
+        return "Neutral";
     }
     if(db.get('teams').find({ name: "Red" }).value().players.length > db.get('teams').find({ name: "Green" }).value().players.length) {
         db.get('teams').find({ name: "Green" }).assign(db.get('teams').find({ name: "Green" }).value().players.push({
@@ -39,6 +39,7 @@ function addPlayer(teamName, player) {
             lat : 0,
             long : 0
         })).value();
+        return "Red";
     } else if(db.get('teams').find({ name: "Red" }).value().players.length < db.get('teams').find({ name: "Green" }).value().players.length) {
         db.get('teams').find({ name: "Green" }).assign(db.get('teams').find({ name: "Red" }).value().players.push({
             username: player,
@@ -47,14 +48,16 @@ function addPlayer(teamName, player) {
             lat : 0,
             long : 0
         })).value();
+        return "Green";
     } else {
-        db.get('teams').find({ name: "Green" }).assign(db.get('teams').find({ name: teamName }).value().players.push({
+        db.get('teams').find({ name: teamName }).assign(db.get('teams').find({ name: teamName }).value().players.push({
             username: player,
             numberQuestionTried: 0,
             score : 0,
             lat : 0,
             long : 0
         })).value();
+        return teamName;
     }
 }
 exports.addPlayer = addPlayer;
@@ -134,3 +137,13 @@ function getPlayerList() {
     return list;
 }
 exports.getPlayerList = getPlayerList;
+
+function getTeamList() {
+    let list = [];
+    _.each(db.get('teams').value(),function (team) {
+        list.push(team);
+    });
+    //jsonfile.writeFileSync("./test.json",list, {spaces: 2});
+    return list;
+}
+exports.getTeamList = getTeamList;

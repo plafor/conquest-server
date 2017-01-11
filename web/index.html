@@ -30,7 +30,7 @@
 
     $('form').submit(function(e){
         e.preventDefault();
-        socket.emit('newPlayer', JSON.stringify({teamName:$('#team').val(),username:$('#name').val()}));
+        socket.emit('newPlayer', JSON.stringify({preferedTeam:$('#team').val(),username:$('#name').val()}));
         socket.emit('changePosition', JSON.stringify({username:$('#name').val(), lat:42,long:42}));
         socket.emit('answerQuestion', JSON.stringify({username:$('#name').val(), title:"eau",result:true}));
         socket.emit('answerQuestion', JSON.stringify({username:$('#name').val(), title:"eau",result:false}));

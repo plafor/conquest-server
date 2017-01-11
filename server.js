@@ -60,9 +60,10 @@ app.get('/', function (req, res, next) {
 socket.on('connection', (socket) => {
     winston.info('a user connected');
     socket.on('newPlayer', (message) => {
-        const player = JSON.parse(message);
-        winston.info('Creating user with username: '+player.username+' and team preference to '+player.teamName);
-        teamHandler.addPlayer(player.teamName, player.username);
+        const player = JSON.parse(JSON.stringify(message));
+        winston.info('Creating user with username: '+player.username+' and team preference to '+player.preferedTeam);
+        const teamName = teamHandler.addPlayer(player.preferedTeam, player.username);
+        socket.emit('newPlayer', teamName);
     });
     socket.on('changePosition', (message) => {
         const player = JSON.parse(message);
@@ -71,17 +72,24 @@ socket.on('connection', (socket) => {
     });
     socket.on('answerQuestion', (message) => {
         const questionResult = JSON.parse(message);
-        winston.info('the player '+questionResult.username+' as anwsered to the question :'+questionResult.title+' and his result is '+questionResult.result);
+        winston.info('the player '+questionResult.username+' as answered to the question :'+questionResult.title+' and his result is '+questionResult.result);
         teamHandler.answerToQuestion(questionResult.username, questionResult.result);
     });
     socket.on('sendSpots', (message) => {
+        winston.info('sending spots to a player');
         socket.emit('sendSpots', spots.getSpotList());
     });
     socket.on('sendRandomQuestion', (message) => {
+        winston.info('A player asked a random question');
         socket.emit('sendRandomQuestion', question.getQuestionRandom());
     });
     socket.on('sendPlayerList', (message) => {
+        winston.info('sending player list to a player');
         socket.emit('sendPlayerList', teamHandler.getPlayerList());
+    });
+    socket.on('sendTeamList', (message) => {
+        winston.info('sending team list to a player');
+        socket.emit('sendTeamList', teamHandler.getTeamList());
     });
     socket.on('disconnect', () => {
         winston.info('a user disconnected');
