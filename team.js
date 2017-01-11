@@ -9,6 +9,7 @@ const db = low('db.json', {
     storage: fileSync
 })
 const _ = require('lodash');
+const winston = require('winston');
 db.defaults({ teams: [] }).value();
 
 function createTeam(name, color) {
@@ -22,9 +23,14 @@ function createTeam(name, color) {
 exports.createTeam = createTeam;
 
 function addPlayer(teamName, player) {
+    if(playerFinder(player)!=null) {
+        winston.error("A Player have tried to choose an username that is already in database!");
+        return;
+    }
     if(db.get('teams').find({ name: "Red" }).value().players.length > db.get('teams').find({ name: "Green" }).value().players.length) {
         db.get('teams').find({ name: "Green" }).assign(db.get('teams').find({ name: "Green" }).value().players.push({
             username: player,
+            numberQuestionTried: 0,
             score : 0,
             lat : 0,
             long : 0
@@ -32,6 +38,7 @@ function addPlayer(teamName, player) {
     } else if(db.get('teams').find({ name: "Red" }).value().players.length < db.get('teams').find({ name: "Green" }).value().players.length) {
         db.get('teams').find({ name: "Green" }).assign(db.get('teams').find({ name: "Red" }).value().players.push({
             username: player,
+            numberQuestionTried: 0,
             score : 0,
             lat : 0,
             long : 0
@@ -39,6 +46,7 @@ function addPlayer(teamName, player) {
     } else {
         db.get('teams').find({ name: "Green" }).assign(db.get('teams').find({ name: teamName }).value().players.push({
             username: player,
+            numberQuestionTried: 0,
             score : 0,
             lat : 0,
             long : 0
@@ -47,6 +55,21 @@ function addPlayer(teamName, player) {
 }
 exports.addPlayer = addPlayer;
 
+function answerToQuestion(playerUsername, result) {
+    const teamName = playerTeamFinder(playerUsername).name;
+    const team = db.get('teams').find({name: teamName}).value();
+    const player = playerFinder(playerUsername);
+    if(result) {
+        team.score += 1;
+        player.score += 1;
+    }
+    team.numberQuestionTried += 1;
+    player.numberQuestionTried += 1;
+    db.get('teams').find({name: teamName}).assign(team).value();
+}
+exports.answerToQuestion = answerToQuestion;
+
+// Useless, Can be usefull later
 function changePlayerScore(playerUsername, score) {
     const teamName = playerTeamFinder(playerUsername).name;
     const team =  db.get('teams').find({ name: teamName}).value();

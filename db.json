@@ -9,25 +9,19 @@
       "players": [
         {
           "username": "test",
-          "score": 0,
-          "lat": 0,
-          "long": 0
+          "numberQuestionTried": 3,
+          "score": 2,
+          "lat": 42,
+          "long": 42
         }
       ],
-      "score": 0,
-      "numberQuestionTried": 0
+      "score": 2,
+      "numberQuestionTried": 3
     },
     {
       "name": "Green",
       "color": 24611,
-      "players": [
-        {
-          "username": "testt",
-          "score": 0,
-          "lat": 0,
-          "long": 0
-        }
-      ],
+      "players": [],
       "score": 0,
       "numberQuestionTried": 0
     }
@@ -50,6 +44,36 @@
       "lat": 48.085093,
       "long": -0.75878,
       "status": "Neutral"
+    }
+  ],
+  "questions": [
+    {
+      "title": "eau",
+      "questionType": "TEXT",
+      "questions": [
+        "Quel est la couleur de l'eau?"
+      ],
+      "anwser": "bleu"
+    },
+    {
+      "title": "dep",
+      "questionType": "TEXT",
+      "questions": [
+        "Quel est du département informatique?"
+      ],
+      "anwser": "blanc"
+    },
+    {
+      "title": "os",
+      "questionType": "HQM",
+      "questions": [
+        "Quel est le meilleur OS?",
+        "Linux",
+        "Linux !!!",
+        "Linux <3",
+        "Linux ;)"
+      ],
+      "anwser": "bleu"
     }
   ]
 }
