@@ -20,34 +20,10 @@ const spots = require('./spots');
 function newGame() {
     db.defaults({ teams: [] }).value();
     db.defaults({ spots: [] }).value();
-    //console.log(db.get("teams").remove(db.get('teams').find({ name: "Green" }).value()).value());
-    //console.log(db.get("teams").remove(db.get('teams').find({ name: "Red" }).value()).value());
-    teamHandler.createTeam("Red",  -65536,0);
-    teamHandler.createTeam("Green",  24611,1);
-    /*teamHandler.addPlayer("Red", "Tristan");
-    teamHandler.addPlayer("Red", "Charles");
+    db.defaults({ questions: [] }).value();
+    teamHandler.resetTeam("Red",  "#c62828");
+    teamHandler.resetTeam("Green",  "#43a047");
+    spots.resetSpots();
 
-    teamHandler.changePlayerScore("Tristan", 5);
-
-    teamHandler.getPlayerList();
-
-    /*db.get('spots').push({
-        title: "Departement Informatique",
-        lat: 48.086012,
-        long: -0.759521,
-        status: "Neutral"
-    }).value();
-    db.get('spots').push({
-        title: "Parking",
-        lat: 48.085445810389906,
-        long: -0.7593280076980591,
-        status: "Neutral"
-    }).value();
-    db.get('spots').push({
-        title: "Dormerie",
-        lat: 48.085093,
-        long: -0.758780,
-        status: "Neutral"
-    }).value()*/
 }
 exports.newGame = newGame;

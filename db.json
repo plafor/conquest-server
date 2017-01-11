@@ -2,95 +2,52 @@
   "teams": [
     {
       "name": "Neutral",
-      "color": -65536,
+      "color": "#bdbdbd",
       "players": [],
       "score": 0,
       "numberQuestionTried": 0
     },
     {
       "name": "Red",
-      "color": -65536,
-      "players": [
-        {
-          "username": "testtt",
-          "numberQuestionTried": 0,
-          "score": 0,
-          "lat": 0,
-          "long": 0
-        },
-        {
-          "username": "testttrzreezrzeze",
-          "numberQuestionTried": 0,
-          "score": 0,
-          "lat": 0,
-          "long": 0
-        },
-        {
-          "username": "rtyrtyrty",
-          "numberQuestionTried": 0,
-          "score": 0,
-          "lat": 0,
-          "long": 0
-        }
-      ],
-      "score": 0,
-      "numberQuestionTried": 0
-    },
-    {
-      "name": "Green",
-      "color": 24611,
+      "color": "#c62828",
       "players": [
         {
           "username": "test",
-          "numberQuestionTried": 0,
-          "score": 0,
-          "lat": 0,
-          "long": 0
-        },
-        {
-          "username": "aezaezaezeaz",
-          "numberQuestionTried": 0,
-          "score": 0,
-          "lat": 0,
-          "long": 0
-        },
-        {
-          "username": "tezerezr",
-          "numberQuestionTried": 0,
-          "score": 0,
-          "lat": 0,
-          "long": 0
-        },
-        {
-          "username": "ryetfdgfdgfdg",
-          "numberQuestionTried": 0,
-          "score": 0,
+          "numberQuestionTried": 4,
+          "score": 4,
           "lat": 0,
           "long": 0
         }
       ],
+      "score": 4,
+      "numberQuestionTried": 4
+    },
+    {
+      "name": "Green",
+      "color": "#43a047",
+      "players": [],
       "score": 0,
       "numberQuestionTried": 0
     }
   ],
   "spots": [
     {
-      "title": "Département Informatique",
+      "title": "dep",
       "lat": 48.086012,
       "long": -0.759521,
-      "status": "Neutral"
+      "status": "Red"
     },
     {
-      "title": "Parking",
+      "title": "parking",
       "lat": 48.085445810389906,
       "long": -0.7593280076980591,
-      "status": "Neutral"
+      "status": "Red"
     },
     {
-      "title": "Dormerie",
+      "title": "dormerie",
       "lat": 48.085093,
       "long": -0.75878,
-      "status": "Neutral"
+      "status": "Red"
     }
   ],
   "questions": [
@@ -100,19 +57,19 @@
       "questions": [
         "Quel est la couleur de l'eau?"
       ],
-      "anwser": "bleu"
+      "answer": "bleue"
     },
     {
       "title": "dep",
       "questionType": "TEXT",
       "questions": [
-        "Quel est du département informatique?"
+        "Quel est la couleur du département informatique?"
       ],
-      "anwser": "blanc"
+      "answer": "blanc"
     },
     {
       "title": "os",
-      "questionType": "HQM",
+      "questionType": "MCQ",
       "questions": [
         "Quel est le meilleur OS?",
         "Linux",
@@ -120,7 +77,7 @@
         "Linux <3",
         "Linux ;)"
       ],
-      "anwser": "bleu"
+      "answer": "Linux <3"
     }
   ]
 }

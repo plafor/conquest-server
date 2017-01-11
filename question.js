@@ -20,7 +20,7 @@ function getQuestion(title) {
 exports.getQuestion = getQuestion;
 
 function getQuestionRandom() {
-    return db.get('question').value()[getRandom(0,db.get('question').value().length-1)];
+    return db.get('questions').value()[getRandom(0,db.get('questions').value().length-1)];
 }
 exports.getQuestionRandom = getQuestionRandom;
 

@@ -14,6 +14,10 @@ const db = low('db.json', {
 })
 const _ = require('lodash');
 const winston = require('winston');
+/**
+ * Internal Module dependencies.
+ */
+const spots = require('./spots');
 
 
 function createTeam(name, color) {
@@ -24,7 +28,7 @@ function createTeam(name, color) {
         "score" : 0,
         "numberQuestionTried" : 0}).value();
 }
-exports.createTeam = createTeam;
+exports.resetTeam = createTeam;
 
 function addPlayer(teamName, player) {
     if(playerFinder(player)!=null) {
@@ -39,16 +43,16 @@ function addPlayer(teamName, player) {
             lat : 0,
             long : 0
         })).value();
-        return "Red";
+        return "Green";
     } else if(db.get('teams').find({ name: "Red" }).value().players.length < db.get('teams').find({ name: "Green" }).value().players.length) {
-        db.get('teams').find({ name: "Green" }).assign(db.get('teams').find({ name: "Red" }).value().players.push({
+        db.get('teams').find({ name: "Red" }).assign(db.get('teams').find({ name: "Red" }).value().players.push({
             username: player,
             numberQuestionTried: 0,
             score : 0,
             lat : 0,
             long : 0
         })).value();
-        return "Green";
+        return "Red";
     } else {
         db.get('teams').find({ name: teamName }).assign(db.get('teams').find({ name: teamName }).value().players.push({
             username: player,
@@ -62,7 +66,7 @@ function addPlayer(teamName, player) {
 }
 exports.addPlayer = addPlayer;
 
-function answerToQuestion(playerUsername, result) {
+function answerToQuestion(playerUsername, result, title, spotTitle) {
     const teamName = playerTeamFinder(playerUsername).name;
     const team = db.get('teams').find({name: teamName}).value();
     const player = playerFinder(playerUsername);
@@ -73,6 +77,7 @@ function answerToQuestion(playerUsername, result) {
     team.numberQuestionTried += 1;
     player.numberQuestionTried += 1;
     db.get('teams').find({name: teamName}).assign(team).value();
+    spots.spotChangeStatus(spotTitle,team.name)
 }
 exports.answerToQuestion = answerToQuestion;
 
