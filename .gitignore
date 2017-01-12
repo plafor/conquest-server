@@ -7,5 +7,3 @@ test/e2e/reports
 selenium-debug.log
 .idea/
 conquest-server/
-src/res/data/spots.json
-src/res/data/teams.json
