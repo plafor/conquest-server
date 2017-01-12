@@ -70,7 +70,7 @@ socket.on('connection', (socket) => {
     });
     socket.on('changePosition', (message) => {
         console.log(message);
-        const player = JSON.parse(message);
+        const player = JSON.parse(JSON.stringify(message));
         winston.info('the player '+player.username+' changer this position to lat:'+player.lat+' and long: '+player.long);
         teamHandler.changePlayerPosition(player.username, player.lat, player.long);
         winston.info('broadcast update to client, cause : changePosition of one player');
@@ -85,7 +85,8 @@ socket.on('connection', (socket) => {
         const win = spots.verifIfTeamWin();
         if(win!="Neutral") {
             winston.info('update', "update, cause : team "+win+" win the game!");
-            socket.broadcast.emit('endgame', win);
+            socket.broadcast.emit('gamefinish', win);
+            socket.broadcast.emit('update', "update");
         }
     });
     socket.on('sendSpots', (message) => {
@@ -112,5 +113,5 @@ socket.on('connection', (socket) => {
 /**
  * Start listen with the server
  */
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 8080;
 server.listen(port, () => console.log('Express server listening on %d, in %s mode', port, app.get('env')));

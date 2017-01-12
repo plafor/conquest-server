@@ -5,7 +5,6 @@
 /**
  * External Module dependencies.
  */
-const jsonfile = require('jsonfile');
 //DataBase
 const low = require('lowdb');
 const fileSync = require('lowdb/lib/file-sync');

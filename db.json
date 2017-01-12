@@ -10,17 +10,9 @@
     {
       "name": "Red",
       "color": "#c62828",
-      "players": [
-        {
-          "username": "test",
-          "numberQuestionTried": 4,
-          "score": 4,
-          "lat": 0,
-          "long": 0
-        }
-      ],
-      "score": 4,
-      "numberQuestionTried": 4
+      "players": [],
+      "score": 0,
+      "numberQuestionTried": 0
     },
     {
       "name": "Green",
@@ -32,19 +24,19 @@
   ],
   "spots": [
     {
-      "title": "dep",
+      "title": "Département Informatique",
       "lat": 48.086012,
       "long": -0.759521,
-      "status": "Red"
+      "status": "Neutral"
     },
     {
-      "title": "parking",
+      "title": "Parking",
       "lat": 48.085445810389906,
       "long": -0.7593280076980591,
-      "status": "Red"
+      "status": "Neutral"
     },
     {
-      "title": "dormerie",
+      "title": "Dormerie",
       "lat": 48.085093,
       "long": -0.75878,
       "status": "Red"
@@ -52,32 +44,44 @@
   ],
   "questions": [
     {
-      "title": "eau",
+      "title": "Eau",
       "questionType": "TEXT",
       "questions": [
-        "Quel est la couleur de l'eau?"
+        "Quelle est la couleur de l'eau ?"
       ],
       "answer": "bleue"
     },
     {
-      "title": "dep",
+      "title": "Fruit",
       "questionType": "TEXT",
       "questions": [
-        "Quel est la couleur du département informatique?"
+        "Quel fruit produit le chêne ?"
       ],
-      "answer": "blanc"
+      "answer": "gland"
     },
     {
-      "title": "os",
+      "title": "Insecte",
       "questionType": "MCQ",
       "questions": [
-        "Quel est le meilleur OS?",
-        "Linux",
-        "Linux !!!",
-        "Linux <3",
-        "Linux ;)"
+        "Quel insecte permet de produire du miel ?",
+        "L'ours",
+        "L'abeille",
+        "Le chêne",
+        "La guèpe"
       ],
-      "answer": "Linux <3"
+      "answer": "L'abeille"
+    },
+    {
+      "title": "Echologia",
+      "questionType": "MCQ",
+      "questions": [
+        "Dans quelle ville se situe Echologia ?",
+        "Paris",
+        "Louverné",
+        "Laval",
+        "Moscou"
+      ],
+      "answer": "Louverné"
     }
   ]
 }

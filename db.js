@@ -24,6 +24,5 @@ function newGame() {
     teamHandler.resetTeam("Red",  "#c62828");
     teamHandler.resetTeam("Green",  "#43a047");
     spots.resetSpots();
-
 }
 exports.newGame = newGame;

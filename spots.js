@@ -38,8 +38,10 @@ function verifIfTeamWin() {
         }
     });
     if(redWin) {
+        resetSpots();
         return "Red"
     } else if(greenWin) {
+        resetSpots();
         return "Green"
     }
     return "Neutral"
