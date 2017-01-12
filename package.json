@@ -1,0 +1,28 @@
+{
+  "name": "conquest-server",
+  "version": "1.0.0",
+  "description": "Server side of the game Conquest",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeOfCinders/conquest-server.git"
+  },
+  "author": "charlesdelorme <charlesdelormefr@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CodeOfCinders/conquest-server/issues"
+  },
+  "homepage": "https://github.com/CodeOfCinders/conquest-server#readme",
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "express": "^4.14.0",
+    "lodash": "^4.17.4",
+    "lowdb": "^0.14.0",
+    "socket.io": "^1.7.2",
+    "winston": "^2.3.0"
+  }
+}
