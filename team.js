@@ -34,6 +34,16 @@ function addPlayer(teamName, player) {
         winston.error("A Player have tried to choose an username that is already in database!");
         return "Neutral";
     }
+    if(db.get('teams').find({ name: "Red" }).value().players.length == db.get('teams').find({ name: "Green" }).value().players.length) {
+        db.get('teams').find({ name: teamName }).assign(db.get('teams').find({ name: teamName }).value().players.push({
+            username: player,
+            numberQuestionTried: 0,
+            score : 0,
+            lat : 0,
+            long : 0
+        })).value();
+        return teamName;
+    }
     if(db.get('teams').find({ name: "Red" }).value().players.length > db.get('teams').find({ name: "Green" }).value().players.length) {
         db.get('teams').find({ name: "Green" }).assign(db.get('teams').find({ name: "Green" }).value().players.push({
             username: player,
