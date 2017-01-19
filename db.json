@@ -82,6 +82,18 @@
         "Moscou"
       ],
       "answer": "Louverné"
+    },
+    {
+      "title": "pts3",
+      "questionType": "MCQ",
+      "questions": [
+        "Quelle est la salle où nous sommes?",
+        "TDM1",
+        "TDM2",
+        "TDM3",
+        "TDM4"
+      ],
+      "answer": "TDM2"
     }
   ]
 }
