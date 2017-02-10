@@ -1,4 +1,8 @@
-var { graphql, buildSchema } = require('graphql');
+var express = require('express');
+var app = express();
+const server = require('http').createServer(app);
+var graphqlHTTP = require('express-graphql');
+var { buildSchema } = require('graphql');
 
 var schema = buildSchema(`
   type Query {
@@ -8,6 +12,11 @@ var schema = buildSchema(`
 
 var root = { hello: () => 'Hello world!' };
 
-graphql(schema, '{ hello }', root).then((response) => {
-  console.log(response);
-});
+app.use('/graphql', graphqlHTTP({
+  schema: schema,
+  rootValue: root,
+  graphiql: true,
+}));
+
+const port = process.env.PORT || 80;
+server.listen(port, () => console.log('Server listening on port 80'));
