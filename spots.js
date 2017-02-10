@@ -7,6 +7,7 @@
  */
 //DataBase
 const low = require('lowdb');
+const winston = require('winston');
 const fileSync = require('lowdb/lib/file-sync');
 const db = low('db.json', {
     storage: fileSync
@@ -32,9 +33,11 @@ function verifIfTeamWin() {
     _.each(db.get('spots').value(), function (value, key) {
         if(value.status!="Red") {
             redWin=false;
+            winston.info('Not red spot info');
         }
         if(value.status!="Green") {
             greenWin=false;
+            winston.info('Not green spot info');
         }
     });
     if(redWin) {
@@ -44,6 +47,7 @@ function verifIfTeamWin() {
         resetSpots();
         return "Green"
     }
+    winston.info('Neutral spot info');
     return "Neutral"
 }
 exports.verifIfTeamWin = verifIfTeamWin;

@@ -37,9 +37,9 @@
     },
     {
       "title": "Dormerie",
-      "lat": 48.085093,
-      "long": -0.75878,
-      "status": "Red"
+      "lat": 48.084962,
+      "long": -0.759738,
+      "status": "Neutral"
     }
   ],
   "questions": [
@@ -49,7 +49,7 @@
       "questions": [
         "Quelle est la couleur de l'eau ?"
       ],
-      "answer": "bleue"
+      "answer": "transparent"
     },
     {
       "title": "Fruit",

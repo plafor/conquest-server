@@ -60,6 +60,7 @@ app.get('/', function (req, res, next) {
 socket.on('connection', (socket) => {
     winston.info('a user connected');
     socket.on('newplayer', (message) => {
+		winston.info('Parsing message : ' + message);
         const player = JSON.parse(JSON.stringify(message));
         winston.info('Creating user with username: '+player.username+' and team preference to '+player.preferedTeam);
         const teamName = teamHandler.addPlayer(player.preferedTeam, player.username);
@@ -81,13 +82,20 @@ socket.on('connection', (socket) => {
         winston.info('the player '+questionResult.username+' as answered to the question : '+questionResult.title+' and his result is '+questionResult.result);
         teamHandler.answerToQuestion(questionResult.username, questionResult.result, questionResult.title, questionResult.spotName);
         winston.info('broadcast update to client, cause : a player answered a question');
-        socket.broadcast.emit('update', "update");
         const win = spots.verifIfTeamWin();
         if(win!="Neutral") {
             winston.info('update', "update, cause : team "+win+" win the game!");
             socket.broadcast.emit('gamefinish', win);
             socket.broadcast.emit('update', "update");
-        }
+        } else {
+	    socket.broadcast.emit('update', "update");
+	}
+    });
+    socket.on('isAlive', (message) => {
+        console.log(message);
+	    if (message == "hello") {
+        		socket.emit('isAlive', "olleh");
+	    }
     });
     socket.on('sendSpots', (message) => {
         winston.info('sending spots to a player');
