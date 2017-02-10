@@ -1,44 +1,13 @@
 <!doctype html>
 <html>
 <head>
-    <title>Socket.IO chat</title>
+    <title>Socket.404 Introuvable</title>
 </head>
 <body>
-<h1>Communication avec socket.io !</h1>
-
-<form id="form" id="chat_form">
-    <input id="team" type="text">
-    <input id="name" type="text">
-    <input type="submit" value="Send">
-</form>
-
-<!--<form id="formPosition" id="chat_formPos">
-    <input id="namePos" type="text">
-    <input id="lat" type="text">
-    <input id="long" type="text">
-    <input type="submit" value="Send">
-</form>-->
-
-<script src="/socket.io/socket.io.js"></script>
-<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<script>
-    const socket = io.connect('http://localhost:80');
-    socket.on('information', function (message) {
-        alert('Le serveur a un message pour vous : ' + message);
-        socket.emit('message', 'Salut serveur, ça va ?');
-    })
-
-    $('form').submit(function(e){
-        e.preventDefault();
-        socket.emit('newPlayer', JSON.stringify({preferedTeam:$('#team').val(),username:$('#name').val()}));
-        socket.emit('changePosition', JSON.stringify({username:$('#name').val(), lat:42,long:42}));
-        socket.emit('answerQuestion', JSON.stringify({username:$('#name').val(), title:"eau",result:true}));
-        socket.emit('answerQuestion', JSON.stringify({username:$('#name').val(), title:"eau",result:false}));
-    });
-   /* $('formPosition').submit(function(e){
-        e.preventDefault();
-        socket.emit('changePosition', JSON.stringify({username:$('#namePos').val(), lat:$('#lat').val(),long:$('#long').val()}));
-    });*/
-</script>
+<center>
+<h1>Communication avec une PAGE 404 !</h1>
+<br><br>
+<h1>Vous essayez de communiquer avec <strong>ALAN TURING</strong></h1>
+</center>
 </body>
 </html>
