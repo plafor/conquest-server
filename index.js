@@ -72,14 +72,14 @@ socket.on('connection', (socket) => {
       winston.info("New player with username: '" + JSON.parse(message).username + "' and preferedTeam: '" + JSON.parse(message).preferedTeam + "'");
     	socket.emit('newPlayer', classe.addPlayer(JSON.parse(message).username, JSON.parse(message).preferedTeam, socket.request.connection.remoteAddress));
 
-      if (classe.getPlayerList().length == 2 && taloen.getData('{endTime}') == "") {
+      if (classe.getPlayerList().length == 2 && classe.getValue('endTime') == "") {
         dateEndGame = new Date(new Date().getTime() + 240000);
 
         classe.setEndTime(dateEndGame);
         winston.info('Sending startGame with date end game: ' + dateEndGame);
 
         socket.broadcast.emit('startGame', JSON.stringify(new Date()) + taloen.getData('{endTime}'));
-        socket.emit('startGame', JSON.stringify(new Date()) + taloen.getData('{endTime}'));
+        socket.emit('startGame', JSON.stringify(new Date()) + classe.getValue('endTime'));
 
         setInterval(function() {
           winston.info('Broadcast update to clients, cause : state change');
@@ -115,7 +115,7 @@ socket.on('connection', (socket) => {
       winston.info('Socket received: Possible end');
       if (!isTimerCreated) {
         endTimer = setInterval(function() {
-          if (new Date(JSON.parse(taloen.getData('{endTime}'))).getTime() <= new Date().getTime()) {
+          if (new Date(JSON.parse(classe.getValue('endTime'))).getTime() <= new Date().getTime()) {
             endGame();
             clearInterval(endTimer);
           }
