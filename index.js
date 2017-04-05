@@ -78,7 +78,7 @@ socket.on('connection', (socket) => {
         classe.setEndTime(dateEndGame);
         winston.info('Sending startGame with date end game: ' + dateEndGame);
 
-        socket.broadcast.emit('startGame', JSON.stringify(new Date()) + taloen.getData('{endTime}'));
+        socket.broadcast.emit('startGame', JSON.stringify(new Date()) + classe.getValue('endTime'));
         socket.emit('startGame', JSON.stringify(new Date()) + classe.getValue('endTime'));
 
         setInterval(function() {
