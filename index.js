@@ -81,11 +81,11 @@ socket.on('connection', (socket) => {
         socket.broadcast.emit('startGame', JSON.stringify(new Date()) + classe.getValue('endTime'));
         socket.emit('startGame', JSON.stringify(new Date()) + classe.getValue('endTime'));
 
-        setInterval(function() {
+        /*setInterval(function() {
           winston.info('Broadcast update to clients, cause : state change');
           socket.emit('update', "update");
           socket.broadcast.emit('update', "update");
-        }, 3000, 3000 );
+        }, 3000, 3000 );*/
       }
     });
 
@@ -94,6 +94,7 @@ socket.on('connection', (socket) => {
       const player = JSON.parse(JSON.stringify(message));
       winston.info('The player ' + player.username + ' changer this position to lat:' + player.latitude + ' and long: '+ player.longitude);
       classe.changePlayerPosition(player.username, player.latitude, player.longitude);
+      socket.broadcast.emit('update', "update");
     });
 
     // Socket if the player answer to question
