@@ -106,7 +106,7 @@ socket.on('connection', (socket) => {
 
       const winnerTeam = classe.verifIfTeamWin();
       if(winnerTeam != "Neutral") {
-        endGame();
+        endGame(winnerTeam);
       }
 
 	    socket.broadcast.emit('update', "update");
@@ -115,12 +115,15 @@ socket.on('connection', (socket) => {
     socket.on('possibleEnd', (message) => {
       winston.info('Socket received: Possible end');
       if (!isTimerCreated) {
-        endTimer = setInterval(function() {
+        //endTimer = setInterval(function() {
           if (new Date(JSON.parse(classe.getValue('endTime'))).getTime() <= new Date().getTime()) {
-            endGame();
+            const winnerTeam = classe.verifIfTeamWin();
+      		if(winnerTeam != "Neutral") {
+        		endGame(winnerTeam);
+      		}		
             clearInterval(endTimer);
           }
-        }, 0, 3000 );
+        //}, 0, 3000 );
       }
     });
 
