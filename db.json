@@ -1,0 +1,162 @@
+{
+  "lang": "fr",
+  "endTime": "",
+  "team": [
+    {
+      "name": "Neutral",
+      "color": "#bdbdbd",
+      "player": [],
+      "spot": [
+        {
+          "name": "Département Informatique",
+          "latitude": 48.086012,
+          "longitude": -0.759521,
+          "radius": 15,
+          "state": true
+        },
+        {
+          "name": "Parking",
+          "latitude": 48.085445810389906,
+          "longitude": -0.7593280076980591,
+          "radius": 15,
+          "state": true
+        },
+        {
+          "name": "Dormerie",
+          "latitude": 48.084962,
+          "longitude": -0.759738,
+          "radius": 15,
+          "state": true
+        }
+      ],
+      "score": 0,
+      "numberQuestionTried": 0
+    },
+    {
+      "name": "Red",
+      "color": "#c62828",
+      "player": [],
+      "spot": [],
+      "score": 0,
+      "numberQuestionTried": 0
+    },
+    {
+      "name": "Green",
+      "color": "#43a047",
+      "player": [],
+      "spot": [],
+      "score": 0,
+      "numberQuestionTried": 0
+    },
+    {
+      "name": "Purple",
+      "color": "#43a047",
+      "player": [],
+      "spot": [],
+      "score": 0,
+      "numberQuestionTried": 0
+    },
+    {
+      "name": "White",
+      "color": "#43a047",
+      "player": [],
+      "spot": [],
+      "score": 0,
+      "numberQuestionTried": 0
+    },
+    {
+      "name": "Black",
+      "color": "#43a047",
+      "player": [],
+      "spot": [],
+      "score": 0,
+      "numberQuestionTried": 0
+    },
+    {
+      "name": "Blue",
+      "color": "#43a047",
+      "player": [],
+      "spot": [],
+      "score": 0,
+      "numberQuestionTried": 0
+    },
+    {
+      "name": "Pink",
+      "color": "#43a047",
+      "player": [],
+      "spot": [],
+      "score": 0,
+      "numberQuestionTried": 0
+    },
+    {
+      "name": "Yellow",
+      "color": "#43a047",
+      "player": [],
+      "spot": [],
+      "score": 0,
+      "numberQuestionTried": 0
+    }
+  ],
+  "question": [
+    {
+      "name": "Eau",
+      "questionType": "MCQ",
+      "question": "Quelle est la couleur de l'eau ?",
+      "possibilities": [
+        "Bleue",
+        "Transparente",
+        "Blanche",
+        "Turquoise"
+      ],
+      "answer": 2
+    },
+    {
+      "name": "Fruit",
+      "questionType": "MCQ",
+      "question": "Quel fruit produit le chêne ?",
+      "possibilities": [
+        "Une Chataigne",
+        "Une Bogue",
+        "Un Gland",
+        "Une Pomme de Pin"
+      ],
+      "answer": 3
+    },
+    {
+      "name": "Insecte",
+      "questionType": "MCQ",
+      "question": "Quel insecte permet de produire du miel ?",
+      "possibilities": [
+        "L'ours",
+        "L'abeille",
+        "Le chêne",
+        "La guèpe"
+      ],
+      "answer": 2
+    },
+    {
+      "name": "Echologia",
+      "questionType": "MCQ",
+      "question": "Dans quelle ville se situe Echologia ?",
+      "possibilities": [
+        "Paris",
+        "Louverné",
+        "Laval",
+        "Moscou"
+      ],
+      "answer": 2
+    },
+    {
+      "name": "pts3",
+      "questionType": "MCQ",
+      "question": "Quelle est la salle où nous sommes?",
+      "possibilities": [
+        "TDM1",
+        "TDM2",
+        "TDM3",
+        "TDM4"
+      ],
+      "answer": 2
+    }
+  ]
+}

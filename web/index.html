@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- title of web page -->
+    <title>Socket.IO chat</title>
+  </head>
+
+  <body>
+    <h1>Communication avec socket.io !</h1>
+
+    <!-- form to communique with socket.io by socket -->
+    <form id="form">
+      <input id="socketName" type="text">
+      <input id="message" type="text">
+      <input type="submit" value="Send">
+    </form>
+
+    <!-- import socket.io to the node-module -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+
+    <!-- script socket.io to interact with server -->
+    <script>
+      const socket = io.connect('http://localhost:80');
+
+      $('form').submit(function(e){
+        e.preventDefault();
+        socket.emit($('#socketName').val(), $('#message').val());
+        socket.on($('#socketName').val(), function (message) {
+          alert('Le serveur a un message pour vous : ' + message);
+        });
+      });
+    </script>
+  </body>
+</html>
